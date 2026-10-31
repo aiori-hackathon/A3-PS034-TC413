@@ -1,0 +1,62 @@
+module custom-telemetry {
+  yang-version 1.1;
+  namespace "urn:custom:params:xml:ns:yang:custom-telemetry";
+  prefix telemetry;
+
+  organization
+    "AIORI Network Telemetry Working Group";
+  contact
+    "AIORI Hackathon Team <telemetry-dev@aiori.internal>";
+  description
+    "Custom YANG module for hardware and system operational telemetry.";
+
+  revision 2024-01-01 {
+    description
+      "Initial version.";
+    reference
+      "RFC 8641 / PS-034 Schema-Validated YANG-Push Telemetry Pipeline";
+  }
+
+  container system {
+    presence "Operational system telemetry state.";
+    description
+      "System resource and performance telemetry state.";
+
+    leaf cpu-utilization {
+      type uint8 {
+        range "0..100";
+      }
+      units "percent";
+      mandatory true;
+      description
+        "Current total CPU utilization percentage.";
+    }
+
+    leaf memory-utilization {
+      type uint8 {
+        range "0..100";
+      }
+      units "percent";
+      mandatory true;
+      description
+        "Current physical memory utilization percentage.";
+    }
+
+    leaf throughput-bps {
+      type uint64;
+      units "bits-per-second";
+      description
+        "Current aggregate system throughput in bits per second.";
+    }
+
+    leaf rtt-latency-ms {
+      type decimal64 {
+        fraction-digits 2;
+        range "0.00..5000.00";
+      }
+      units "milliseconds";
+      description
+        "Average round trip time latency across control interfaces.";
+    }
+  }
+}

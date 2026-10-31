@@ -1,0 +1,70 @@
+{
+  "ietf-yang-library:yang-library": {
+    "content-id": "1",
+    "module-set": [
+      {
+        "name": "complete",
+        "module": [
+          {
+            "name": "ietf-interfaces",
+            "revision": "2018-02-20",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-interfaces"
+          },
+          {
+            "name": "ietf-yang-types",
+            "revision": "2013-07-15",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-types"
+          },
+          {
+            "name": "custom-telemetry",
+            "revision": "2024-01-01",
+            "namespace": "urn:custom:params:xml:ns:yang:custom-telemetry"
+          }
+        ]
+      }
+    ],
+    "schema": [
+      {
+        "name": "ietf-interfaces@2018-02-20.yang",
+        "location": [
+          "yang_schemas/ietf-interfaces@2018-02-20.yang"
+        ]
+      },
+      {
+        "name": "ietf-yang-types@2013-07-15.yang",
+        "location": [
+          "yang_schemas/ietf-yang-types@2013-07-15.yang"
+        ]
+      },
+      {
+        "name": "custom-telemetry@2024-01-01.yang",
+        "location": [
+          "yang_schemas/custom-telemetry@2024-01-01.yang"
+        ]
+      }
+    ]
+  },
+  "ietf-yang-library:modules-state": {
+    "module-set-id": "1",
+    "module": [
+      {
+        "name": "ietf-interfaces",
+        "revision": "2018-02-20",
+        "namespace": "urn:ietf:params:xml:ns:yang:ietf-interfaces",
+        "conformance-type": "implement"
+      },
+      {
+        "name": "ietf-yang-types",
+        "revision": "2013-07-15",
+        "namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-types",
+        "conformance-type": "implement"
+      },
+      {
+        "name": "custom-telemetry",
+        "revision": "2024-01-01",
+        "namespace": "urn:custom:params:xml:ns:yang:custom-telemetry",
+        "conformance-type": "implement"
+      }
+    ]
+  }
+}

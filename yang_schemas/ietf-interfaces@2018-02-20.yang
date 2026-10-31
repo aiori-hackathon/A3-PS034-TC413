@@ -1,0 +1,141 @@
+module ietf-interfaces {
+  yang-version 1.1;
+  namespace "urn:ietf:params:xml:ns:yang:ietf-interfaces";
+  prefix if;
+
+  import ietf-yang-types {
+    prefix yang;
+  }
+
+  organization
+    "IETF NETMOD (Network Modeling) Working Group";
+  contact
+    "WG Web:   <https://datatracker.ietf.org/wg/netmod/>
+     WG List:  <mailto:netmod@ietf.org>";
+  description
+    "This module contains a scoped subset of YANG definitions for
+     managing network interfaces, compliant with RFC 8343 for PS-034
+     YANG-Push telemetry streaming.";
+
+  revision 2018-02-20 {
+    description
+      "Updated to support NMDA.";
+    reference
+      "RFC 8343: A YANG Data Model for Interface Management";
+  }
+
+  typedef interface-ref {
+    type string;
+    description
+      "Reference to an interface name.";
+  }
+
+  container interfaces {
+    description
+      "Interface configuration and operational state parameters.";
+    list interface {
+      key "name";
+      description
+        "The list of network interfaces on the device.";
+
+      leaf name {
+        type string {
+          length "1..255";
+        }
+        mandatory true;
+        description
+          "The name of the interface.";
+      }
+
+      leaf description {
+        type string;
+        description
+          "A textual description of the interface.";
+      }
+
+      leaf type {
+        type string;
+        description
+          "The type of the interface.";
+      }
+
+      leaf enabled {
+        type boolean;
+        default "true";
+        description
+          "Administrative status.";
+      }
+
+      leaf oper-status {
+        type enumeration {
+          enum up {
+            value 1;
+            description "Ready to pass packets.";
+          }
+          enum down {
+            value 2;
+            description "The interface does not pass any packets.";
+          }
+          enum testing {
+            value 3;
+            description "In some test mode.";
+          }
+          enum unknown {
+            value 4;
+            description "Status cannot be determined.";
+          }
+          enum dormant {
+            value 5;
+            description "Waiting for external events.";
+          }
+          enum not-present {
+            value 6;
+            description "Some component (hardware) missing.";
+          }
+          enum lower-layer-down {
+            value 7;
+            description "Down due to state of lower-layer interfaces.";
+          }
+        }
+        mandatory true;
+        description
+          "The current operational state of the interface.";
+      }
+
+      container statistics {
+        description
+          "Operational statistics for the interface.";
+
+        leaf in-octets {
+          type yang:counter64;
+          description
+            "The total number of octets received on the interface.";
+        }
+
+        leaf out-octets {
+          type yang:counter64;
+          description
+            "The total number of octets transmitted out of the interface.";
+        }
+
+        leaf in-errors {
+          type yang:counter32;
+          description
+            "Inbound packets that contained errors preventing them from being deliverable.";
+        }
+
+        leaf out-errors {
+          type yang:counter32;
+          description
+            "Outbound packets that could not be transmitted because of errors.";
+        }
+
+        leaf in-discards {
+          type yang:counter32;
+          description
+            "Inbound packets chosen to be discarded even though no errors were detected.";
+        }
+      }
+    }
+  }
+}

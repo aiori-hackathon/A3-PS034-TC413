@@ -1,0 +1,53 @@
+{
+  "timestamp": "2026-10-31T18:08:06.608068+00:00",
+  "experiments": {
+    "message_loss": {
+      "name": "Message Loss Measurement",
+      "passed": true,
+      "packets_sent": 85,
+      "simulated_lost": 15,
+      "detected_lost": 15,
+      "loss_rate_pct": 15.0,
+      "details": "Gap detector successfully tracked monotonic sequence gaps."
+    },
+    "duplicate_handling": {
+      "name": "Duplicate Handling Test",
+      "passed": true,
+      "duplicates_injected": 20,
+      "duplicates_detected": 20,
+      "accuracy_pct": 100.0,
+      "details": "Sliding window fingerprint cache caught all replay duplicates."
+    },
+    "delivery_delay": {
+      "name": "Validation Processing Latency (Local CPU Time Only)",
+      "passed": true,
+      "samples": 200,
+      "average_validation_latency_ms": 0.29,
+      "p95_validation_latency_ms": 0.536,
+      "max_validation_latency_ms": 1.937,
+      "note": "Measures local 6-stage YANG validation CPU time, NOT network RTT or delivery delay. No real NETCONF transport is available in this simulated environment.",
+      "details": "95% of YANG notifications fully validated in < 0.54ms (local processing)."
+    },
+    "consumer_restart": {
+      "name": "Consumer Restart & Recovery",
+      "passed": true,
+      "backend_used": "in_memory_fallback",
+      "messages_sent_during_crash": 25,
+      "messages_recovered_on_restart": 25,
+      "data_loss_count": 0,
+      "note": "Tested with in-memory fallback only. In-memory offsets are NOT durable across process restarts. Start Redis and set REDIS_URL to enable durable consumer group semantics.",
+      "details": "Consumer offset resumed on in_memory_fallback; 0 messages lost."
+    },
+    "yang_preservation": {
+      "name": "YANG Notification Structure Preservation",
+      "passed": true,
+      "extracted_metrics_count": 9,
+      "expected_metrics_found": true,
+      "path_hierarchy_preserved": true,
+      "raw_payload_json_roundtrip": true,
+      "details": "Normalized model preserves YANG datastore paths and type fidelity. Raw RFC 8641 envelope verified for lossless JSON serialization."
+    }
+  },
+  "summary_score": 100.0,
+  "overall_passed": true
+}
