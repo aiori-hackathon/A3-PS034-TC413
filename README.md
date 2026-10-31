@@ -102,52 +102,6 @@ yang-push-pipeline/
 
 ---
 
-## 🚀 Quick Start
-
-### 1. Run the Pipeline & Dashboard (Local Standalone)
-```bash
-python run.py
-```
-Open **[http://localhost:8000](http://localhost:8000)** in your browser to view:
-* Live fleet telemetry (Cisco, Arista, Juniper, Palo Alto)
-* Real-time 6-Stage validation audit feed
-* Dead Letter Queue (DLQ) quarantine inspector
-* Statistical & ML anomaly alerts
-* 1-Click Fault Injection panel
-* Automated Reliability Evaluation Suite
-
-### 2. Run with Docker Compose (with Redis Streams)
-```bash
-docker compose up --build
-```
-
-### 3. Run Test Suite
-```bash
-python -m pytest tests/test_pipeline.py -v
-```
-
-### 4. Trigger Fault Injection via API
-```bash
-# Inject Schema Violation (Illegal enum / type mismatch)
-curl -X POST http://localhost:8000/api/v1/simulator/inject \
-  -H "Content-Type: application/json" \
-  -d '{"device_id": "core-router-01", "anomaly_type": "SCHEMA_VIOLATION"}'
-
-# Inject CPU Spike
-curl -X POST http://localhost:8000/api/v1/simulator/inject \
-  -H "Content-Type: application/json" \
-  -d '{"device_id": "dist-router-02", "anomaly_type": "CPU_SPIKE"}'
-```
-
-### 5. Inspect RFC 8525 YANG Library
-```bash
-curl http://localhost:8000/api/v1/schemas/rfc8525
-```
-
-### 6. Run Automated Reliability Evaluation
-```bash
-curl -X POST http://localhost:8000/api/v1/experiments/run-reliability
-```
 Evaluates:
 1. **Message Loss Measurement**: monotonic sequence gap tracking.
 2. **Duplicate Handling**: sliding-window fingerprint deduplication.
