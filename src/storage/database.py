@@ -18,10 +18,21 @@ class DatabaseManager:
 
     def __init__(self, db_path: Optional[str] = None):
         if db_path is None:
-            base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-            self.db_path = os.path.join(base_dir, "pipeline_telemetry.db")
+            base_dir = os.path.dirname(
+                os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+            )
+            default_path = os.path.join(
+                base_dir, "pipeline_telemetry.db"
+            )
+            self.db_path = os.environ.get("DB_PATH", default_path)
         else:
             self.db_path = db_path
+    
+        os.makedirs(
+            os.path.dirname(os.path.abspath(self.db_path)),
+            exist_ok=True
+        )
+    
         self._conn: Optional[sqlite3.Connection] = None
 
     async def initialize(self):
