@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # PS-034: Schema-Validated YANG-Push Telemetry Pipeline
 
 An end-to-end, production-ready implementation of an IETF-compliant network telemetry pipeline conforming to:
@@ -150,3 +151,10 @@ Evaluates:
 3. **Delivery Delay & Validation Latency**: p95 local validation processing latency.
 4. **Consumer Restart Recovery**: worker crash recovery with zero data loss.
 5. **YANG-Push Notification Structure Preservation**: schema model fidelity & roundtrip JSON.
+=======
+# AIORI-3-HACKATHON-PROJECTS
+This repository will contain the code and resources for the AIORI-3 hackathon that will be developed during the AIORI-3
+
+## YouTube Video link
+https://youtu.be/3DwPlX0gcxg
+>>>>>>> origin/main
