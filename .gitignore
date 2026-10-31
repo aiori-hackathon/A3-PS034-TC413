@@ -1,12 +1,22 @@
+# Python
 __pycache__/
 *.py[cod]
 .pytest_cache/
+
+# Virtual environments
 .venv/
 venv/
+
+# Environment variables and secrets
 .env
 .env.*
 !.env.example
-.DS_Store
-*.log
-*.sqlite
+
+# Generated databases
 *.db
+*.sqlite
+*.sqlite3
+
+# Logs and temporary files
+*.log
+.DS_Store
